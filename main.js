@@ -1,53 +1,117 @@
 // GLOBAL VARIABLES
 let countries; //will contain the fetched data
+
 const continentsList = document.getElementById("continents");
-const countriesList = document.getElementById("countries");
 const inputCountry = document.querySelector('input');
 
-function fetchCountries(continent) {
-    // console.log(1);
-    fetch(`https://restcountries.com/v2/${continent}`)
-        .then(function (res) {
-            // console.log(2);
-            // console.log(res);
-            return res.json();
-        })
-        .then(function (data) {
-            // console.log(data);
-            initialize(data);
-            // console.log(3);
-        })
-        .catch(function (err) {
-            console.log("Error: " + err);
-        })
-    // console.log(4);
-}
-fetchCountries("all");
+// function fetchCountries(continent) {
+//     // console.log(1);
+//     fetch(`https://restcountries.com/v2/${continent}`)
+//         .then(function (res) {
+//             // console.log(2);
+//             // console.log(res);
+//             return res.json();
+//         })
+//         .then(function (data) {
+//             // console.log(data);
+//             initialize(data);
+//             // console.log(3);
+//         })
+//         .catch(function (err) {
+//             console.log("Error: " + err);
+//         })
+//     // console.log(4);
+// }
 
-inputCountry.addEventListener('input', function (event) {
-    let input = event.target.value;
-    continentsList.value = "all";
-    console.log(input.length);
-    if (input.length >= 1) {
-        fetchCountries("name/" + input);
-    } else {
-        fetchCountries("all");
-    }
+// fetchCountries("all");
+
+const endpoint = 'https://restcountries.com/v2/all'
+const allCountries = []
+
+// fetch(endpoint)
+//     .then(res => res.json())
+//     .then(data => allCountries.push(...data))
+
+async function fetchCountries() {
+    const response = await fetch(endpoint);
+    const data =  await response.json()
+    return data;
+}
+
+fetchCountries().then(data => {
+    allCountries.push(...data)
+    initDisplay();
 })
+
+function initDisplay() {
+    const html = allCountries.map(country => {
+        return `<div>${country.name}</div>`;
+    }).join('');
+    countriesList.innerHTML = html;
+}
+
+function findMatches(inputToMatch, countries) {
+    return countries.filter(country => {
+        const regex = new RegExp(inputToMatch, 'gi')
+        return country.name.match(regex)
+    })
+}
+
+function filterByContinent(continent, countries){
+    if (continent === 'all') {
+        return countries
+    } else {
+        return countries.filter(country => {
+           return country.region == continent
+        })
+    }
+
+}
+
+function displayMatches(){
+    const countriesFilteredByContinent = filterByContinent(continentSelect.value, allCountries);
+    console.log(countriesFilteredByContinent)
+    const matchArray = findMatches(searchInputCountry.value, countriesFilteredByContinent);
+    //I am using .join because it returns an array, so i make it a string
+    const html = matchArray.map(country => {
+        return `<div>${country.name}</div>`;
+    }).join('');
+    countriesList.innerHTML = html;
+}
+
+const searchInputCountry = document.querySelector('input');
+const continentSelect = document.getElementById("continents");
+const countriesList = document.getElementById("countries");
+
+searchInputCountry.addEventListener('change', displayMatches);
+searchInputCountry.addEventListener('keyup', displayMatches);
+continentSelect.addEventListener('change', displayMatches)
+
+
+// inputCountry.addEventListener('input', function (event) {
+//     let input = event.target.value;
+//     continentsList.value = "all";
+//     // console.log(input.length);
+//     if (input.length >= 1) {
+//         fetchCountries("name/" + input);
+//     } else {
+//         fetchCountries("all");
+//     }
+// })
 
 //Event Listener
-continentsList.addEventListener("change", function (event) {
-    // console.log(event);
-    inputCountry.value = "";
-    console.log(event.target.value);
-    let selectedContinent = event.target.value;
-    if (selectedContinent === "all") {
-        fetchCountries("all");
-    } else {
-        fetchCountries("region/" + selectedContinent);
-    }
-    // displayCountryInfo(event.target.value);
-})
+// continentsList.addEventListener("change", function (event) {
+//     // console.log(event);
+//     inputCountry.value = "";
+//     console.log(event.target.value);
+//     let selectedContinent = event.target.value;
+//     if (selectedContinent === "all") {
+//         fetchCountries("all");
+//     } else {
+//         fetchCountries("region/" + selectedContinent);
+//     }
+//     // displayCountryInfo(event.target.value);
+// })
 
 function initialize(countriesData) {
     // console.log(countriesData);
@@ -66,7 +130,10 @@ function initialize(countriesData) {
             </div>
             <br />
             <br />`;
-    })
+        })
+        countriesList.innerHTML = countriesDiv;
+
+
     // for (let i = 0; i < countries.length; i++) {
     //     // options += `<option value="${countries[i].alpha3Code}">${countries[i].name}</option>`;
     //     countriesDiv +=
@@ -80,7 +147,6 @@ function initialize(countriesData) {
     //         </div>`;
     //     // `<option value="${countries[i].alpha3Code}">${countries[i].name} (+${countries[i].callingCodes[0]})</option>`;
     // }
-    countriesList.innerHTML = countriesDiv;
     // countriesList.selectedIndex = Math.floor(Math.random() * countriesList.length);
 
     // displayCountryInfo(countriesList[countriesList.selectedIndex].value);
@@ -93,7 +159,7 @@ countriesCards.forEach((card) => {
 
 //todo
 //1. .fetch remove initialize function
-//2. At initialize function use .forEach
+//2. At initialize function use .forEach    OK
 //3. When typing in input search only in the selected continent
 //4. Style with CSS and BEM (practice)
 //5. On country click show country's details on modal window
