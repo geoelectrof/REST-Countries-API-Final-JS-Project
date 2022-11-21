@@ -2,6 +2,7 @@
 let countries; //will contain the fetched data
 const continentsList = document.getElementById("continents");
 const countriesList = document.getElementById("countries");
+const inputCountry = document.querySelector('input');
 
 function fetchCountries(continent) {
     // console.log(1);
@@ -23,10 +24,21 @@ function fetchCountries(continent) {
 }
 fetchCountries("all");
 
+inputCountry.addEventListener('input', function (event) {
+    let input = event.target.value;
+    continentsList.value = "all";
+    console.log(input.length);
+    if (input.length >= 1) {
+        fetchCountries("name/" + input);
+    } else {
+        fetchCountries("all");
+    }
+})
 
 //Event Listener
 continentsList.addEventListener("change", function (event) {
     // console.log(event);
+    inputCountry.value = "";
     console.log(event.target.value);
     let selectedContinent = event.target.value;
     if (selectedContinent === "all") {
@@ -45,7 +57,7 @@ function initialize(countriesData) {
     for (let i = 0; i < countries.length; i++) {
         // options += `<option value="${countries[i].alpha3Code}">${countries[i].name}</option>`;
         countriesDiv +=
-            `<div>
+            `<div class="country-single-card">
             <p><strong>Country: <span id="country-name">${countries[i].name}</span></strong></p>
             <img src="${countries[i].flag}" alt="">
             <p>Capital: <span id="capital">${countries[i].capital}</span></p>
@@ -60,6 +72,22 @@ function initialize(countriesData) {
 
     // displayCountryInfo(countriesList[countriesList.selectedIndex].value);
 }
+
+let countriesCards = document.querySelectorAll(".country-single-card");
+countriesCards.forEach((card) => {
+    console.log(card);
+})
+
+//todo
+//1. .fetch remove initialize function
+//2. At initialize function use .forEach
+//3. When typing in input search only in the selected continent
+//4. Style with CSS and BEM (practise)
+//5. On country click show country's details on modal window
+//5.1 Show countries with shared borders & display them on modal window
+//5.2 Return back button
+
+
 
 // function displayCountryInfo(countryByAlpha3Code) {
 //     const countryData = countries.find(country => country.alpha3Code === countryByAlpha3Code);
