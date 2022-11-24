@@ -39,7 +39,20 @@ function displayMatches(){
     const matchArray = findMatches(searchInputCountry.value, countriesFilteredByContinent);
     //I am using .join because it returns an array, so i make it a string
     const html = matchArray.map(country => {
-        return `<div class="card">${country.name}</div>`;
+        console.log(country)
+        return `
+            <div class="card">
+                <div class="card__flag-container">
+                    <img src=${country.flag} class="card__flag" />
+                </div>
+                <div class="card__info">
+                    <h2 class="card__name">${country.name}</h2>
+                    <p class="card__info-data"><span class="card__info-data-title">Population: </span>${country.population}</p>
+                    <p class="card__info-data"><span class="card__info-data-title">Region: </span>${country.region}</p>
+                    <p class="card__info-data"><span class="card__info-data-title">Capital: </span>${country.capital}</p>
+                </div>
+            </div>
+        `;
     }).join('');
     countriesList.innerHTML = html;
 }
