@@ -59,6 +59,7 @@ main {
     border: none;
     filter: drop-shadow(5px 5px 7px rgba(0, 0, 0, 0.2));
     border-radius: 5px;
+    appearance: none;
 }
 
 .main-content {
