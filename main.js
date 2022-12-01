@@ -35,13 +35,13 @@ function filterByContinent(continent, countries){
 
 function displayMatches(){
     const countriesFilteredByContinent = filterByContinent(continentSelect.value, allCountries);
-    console.log(countriesFilteredByContinent)
+    // console.log(countriesFilteredByContinent)
     const matchArray = findMatches(searchInputCountry.value, countriesFilteredByContinent);
     //I am using .join because it returns an array, so i make it a string
     const html = matchArray.map(country => {
-        console.log(country)
+        // console.log(country)
         return `
-            <div class="card">
+            <div class="card" onclick="myFunction()">
                 <div class="card__flag-container">
                     <img src=${country.flag} class="card__flag" />
                 </div>
@@ -64,6 +64,11 @@ const countriesList = document.getElementById("countries");
 searchInputCountry.addEventListener('change', displayMatches);
 searchInputCountry.addEventListener('keyup', displayMatches);
 continentSelect.addEventListener('change', displayMatches)
+
+function myFunction(e) {
+    document.getElementById("countries").innerHTML = `<button onclick="displayMatches()">Back</button><h1>Hello World</h1>`;
+    console.log(e)
+}
 
 
 // function initialize(countriesData) {

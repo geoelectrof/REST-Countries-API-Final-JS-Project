@@ -22,7 +22,7 @@ header {
     display: flex;
     justify-content:space-between;
     align-items: center;
-    width: 900px;
+    width: 90%;
     margin: auto;
     /* box-shadow: 0px 3px 0px 0px rgba(0,0,0,0.38); */
     z-index: -25;
@@ -63,7 +63,7 @@ main {
 }
 
 .main-content {
-    width: 900px;
+    width: 90%;
     margin:auto;
 }
 
@@ -77,10 +77,13 @@ main {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
+    gap: 10px;
 }
 
 .card {
     width: 200px;
+    /* width: 20%; */
+    /* flex: 1; */
     background-color: var(--secondary-bg-color);
     margin: 25px 0 25px 0;
     border-radius: 5px;
@@ -88,6 +91,10 @@ main {
     flex-direction: column;
     justify-content:last baseline;
     filter: drop-shadow(5px 5px 7px rgba(0, 0, 0, 0.2));
+}
+
+.card:hover {
+    cursor: pointer;
 }
 
 .card__flag-container {
