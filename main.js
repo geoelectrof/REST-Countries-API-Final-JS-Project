@@ -14,6 +14,8 @@ async function fetchCountries() {
 fetchCountries().then(data => {
     allCountries.push(...data)
     displayMatches();
+    const divs = document.querySelectorAll(".card")
+    divs.forEach(div => div.addEventListener('click', logText))
 })
 
 function findMatches(inputToMatch, countries) {
@@ -40,8 +42,9 @@ function displayMatches(){
     //I am using .join because it returns an array, so i make it a string
     const html = matchArray.map(country => {
         // console.log(country)
+        let hello = country.name;
         return `
-            <div class="card" onclick="myFunction()">
+            <div class="card" data-key="${country.name}">
                 <div class="card__flag-container">
                     <img src=${country.flag} class="card__flag" />
                 </div>
@@ -67,6 +70,12 @@ continentSelect.addEventListener('change', displayMatches)
 
 function myFunction(e) {
     document.getElementById("countries").innerHTML = `<button onclick="displayMatches()">Back</button><h1>Hello World</h1>`;
+    console.log(e.target)
+}
+
+
+
+function logText(e) {
     console.log(e)
 }
 
