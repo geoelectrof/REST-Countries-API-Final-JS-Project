@@ -76,7 +76,7 @@ function myFunction(e) {
 
 
 function logText(e) {
-    console.log(e)
+    console.log(e.currentTarget)
 }
 
 
