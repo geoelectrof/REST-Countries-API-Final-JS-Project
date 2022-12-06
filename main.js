@@ -36,6 +36,7 @@ function filterByContinent(continent, countries){
 }
 
 function displayMatches(){
+
     const countriesFilteredByContinent = filterByContinent(continentSelect.value, allCountries);
     // console.log(countriesFilteredByContinent)
     const matchArray = findMatches(searchInputCountry.value, countriesFilteredByContinent);
@@ -58,6 +59,8 @@ function displayMatches(){
         `;
     }).join('');
     countriesList.innerHTML = html;
+    const divs = document.querySelectorAll(".card")
+    divs.forEach(div => div.addEventListener('click', logText))
 }
 
 const searchInputCountry = document.querySelector('input');
@@ -76,7 +79,9 @@ function myFunction(e) {
 
 
 function logText(e) {
-    console.log(e.currentTarget)
+    console.log(e.currentTarget.getAttribute('data-key'))
+    let selectedCountry = e.currentTarget.getAttribute('data-key')
+    document.getElementById("countries").innerHTML = `<button onclick="displayMatches()">Back</button><h1>${selectedCountry}</h1>`;
 }
 
 
