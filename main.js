@@ -69,7 +69,7 @@ const countriesList = document.getElementById("countries");
 
 searchInputCountry.addEventListener('change', displayMatches);
 searchInputCountry.addEventListener('keyup', displayMatches);
-continentSelect.addEventListener('change', displayMatches)
+continentSelect.addEventListener('change', displayMatches);
 
 function myFunction(e) {
     document.getElementById("countries").innerHTML = `<button onclick="displayMatches()">Back</button><h1>Hello World</h1>`;
@@ -79,9 +79,33 @@ function myFunction(e) {
 
 
 function logText(e) {
-    console.log(e.currentTarget.getAttribute('data-key'))
-    let selectedCountry = e.currentTarget.getAttribute('data-key')
-    document.getElementById("countries").innerHTML = `<button onclick="displayMatches()">Back</button><h1>${selectedCountry}</h1>`;
+    console.log(e.currentTarget.getAttribute('data-key'));
+    let selectedCountry = e.currentTarget.getAttribute('data-key');
+    let theCountry = allCountries.find( country => country.name === selectedCountry);
+    console.log(theCountry);
+    // document.getElementById("countries").innerHTML = `
+    //     <button onclick="displayMatches()">Back</button>
+    //     <h1>${theCountry.name}</h1>
+    // `;
+    document.querySelector('.filters').style.display = "none";
+    document.getElementById("countries").innerHTML = `
+        <div>
+            <button class="back">Back</button>
+            <div  class="single-country">
+                <div class="single-country__flag">
+                    <img src=${theCountry.flag} class="card__flag" />
+                </div>
+                <div class="single-country__info">
+                    <h1>${theCountry.name}</h1>
+                </div>
+            </div>
+        <div>
+    `;
+    let back = document.querySelector(".back");
+    back.addEventListener('click', function(){
+        document.querySelector('.filters').style.display = "flex";
+        displayMatches();
+    })
 }
 
 
