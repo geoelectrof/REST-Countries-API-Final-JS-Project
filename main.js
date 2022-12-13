@@ -44,6 +44,7 @@ function displayMatches(){
     const html = matchArray.map(country => {
         // console.log(country)
         let hello = country.name;
+        // const currencies = country.currencies.forEach(currency => );
         return `
             <div class="card" data-key="${country.name}">
                 <div class="card__flag-container">
@@ -54,6 +55,7 @@ function displayMatches(){
                     <p class="card__info-data"><span class="card__info-data-title">Population: </span>${country.population}</p>
                     <p class="card__info-data"><span class="card__info-data-title">Region: </span>${country.region}</p>
                     <p class="card__info-data"><span class="card__info-data-title">Capital: </span>${country.capital}</p>
+                    
                 </div>
             </div>
         `;
@@ -87,23 +89,42 @@ function logText(e) {
     //     <button onclick="displayMatches()">Back</button>
     //     <h1>${theCountry.name}</h1>
     // `;
+
     document.querySelector('.filters').style.display = "none";
-    document.getElementById("countries").innerHTML = `
+    document.getElementById("countries").style.display = "none";
+    const singleCountryDiv = document.createElement("div");
+    document.querySelector(".main-content").appendChild(singleCountryDiv);
+    singleCountryDiv.classList.add("single-country-content");
+    singleCountryDiv.innerHTML = `
         <div>
-            <button class="back">Back</button>
+            <button class="back"><i class="fa-solid fa-arrow-left"></i> Back</button>
             <div  class="single-country">
                 <div class="single-country__flag">
                     <img src=${theCountry.flag} class="card__flag" />
                 </div>
                 <div class="single-country__info">
                     <h1>${theCountry.name}</h1>
+                    <div class="single-country__info-columns">
+                        <div class="single-country__info-single-column">
+                            <p><span class="single-country__data-title">Native Name: </span> ${theCountry.nativeName}</p>
+                            <p><span class="single-country__data-title">Population: </span> ${theCountry.population}</p>
+                            <p><span class="single-country__data-title">Region: </span> ${theCountry.subregion}</p>
+                            <p><span class="single-country__data-title">Region: </span> ${theCountry.capital}</p>
+                        </div>
+                        <div class="single-country__info-single-column">
+                            <p><span class="single-country__data-title">Native Name: </span>${theCountry.topLevelDomain}</p>
+                            <p><span class="single-country__data-title">Currencies: </span>${theCountry.currencies}</p>
+                        </div>
+                    </div>
                 </div>
             </div>
         <div>
     `;
     let back = document.querySelector(".back");
     back.addEventListener('click', function(){
+        singleCountryDiv.remove();
         document.querySelector('.filters').style.display = "flex";
+        document.getElementById("countries").style.display = "grid";
         displayMatches();
     })
 }
