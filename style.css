@@ -63,7 +63,7 @@ main {
 }
 
 .filters select {
-    padding: 15px;
+    padding: 15px 30px 15px 15px;
     color: var(--secondary-text-color);
     font-size: 12px;
     /* font-weight: 800px; */
@@ -72,6 +72,10 @@ main {
     filter: drop-shadow(5px 5px 7px rgba(0, 0, 0, 0.2));
     border-radius: 5px;
     appearance: none;
+    background-image: url("./images/chevron-down-solid.svg");
+    background-repeat: no-repeat;
+    background-position: right 1rem center;
+    background-size: 1em;
 }
 
 #countries {
@@ -148,6 +152,7 @@ main {
 
 .single-country {
     display: flex;
+    gap: 30px;
 }
 
 .single-country__flag {
