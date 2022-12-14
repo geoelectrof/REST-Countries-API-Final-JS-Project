@@ -96,7 +96,7 @@ function logText(e) {
     document.querySelector(".main-content").appendChild(singleCountryDiv);
     singleCountryDiv.classList.add("single-country-content");
     singleCountryDiv.innerHTML = `
-        <div>
+        
             <button class="back"><i class="fa-solid fa-arrow-left"></i> Back</button>
             <div  class="single-country">
                 <div class="single-country__flag">
@@ -118,7 +118,7 @@ function logText(e) {
                     </div>
                 </div>
             </div>
-        <div>
+        
     `;
     let back = document.querySelector(".back");
     back.addEventListener('click', function(){
