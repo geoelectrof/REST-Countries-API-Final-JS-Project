@@ -14,7 +14,7 @@
 
 body {
     font-family: 'Nunito Sans', sans-serif;
-    font-size: 12px;
+    font-size: 13px;
     margin: 0;
 }
 
@@ -84,13 +84,13 @@ main {
     justify-content: space-between;
     gap: 10px; */
     display: grid;
-    grid-template-columns: repeat(auto-fill, 200px);
+    grid-template-columns: repeat(auto-fill, 230px);
     justify-content: space-between;
     grid-gap: 20px;
 }
 
 .card {
-    width: 200px;
+    width: 230px;
     /* width: 20%; */
     /* flex: 1; */
     background-color: var(--secondary-bg-color);
@@ -100,6 +100,7 @@ main {
     flex-direction: column;
     justify-content:last baseline;
     filter: drop-shadow(5px 5px 7px rgba(0, 0, 0, 0.2));
+    padding-bottom: 20px;;
 }
 
 .card:hover {
@@ -190,7 +191,7 @@ main {
 
 
 
-@media screen and (max-width: 466px) {
+@media screen and (max-width: 552px) {
 
     .filters {
          flex-direction: column;
