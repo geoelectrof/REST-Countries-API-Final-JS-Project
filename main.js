@@ -159,9 +159,9 @@ function logText(e) {
 //1. .fetch remove initialize function                                      OK
 //2. At initialize function use .forEach                                    OK
 //3. When typing in input search only in the selected continent             OK
-//4. Style with CSS (BEM & CSS custom properties (variables) (practice)
-//5. On country click show country's details on new page/modal window
+//4. Style with CSS (BEM & CSS custom properties (variables) (practice)     OK
+//5. On country click show country's details on new page/modal window       OK
 //5.1 Show countries with shared borders & display them on modal window
-//5.2 Return back button
+//5.2 Return back button                                                    OK
 //6. Apply light/dark mode
 //7. Write Readme documentation and comments
