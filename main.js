@@ -52,7 +52,7 @@ function displayMatches(){
                 </div>
                 <div class="card__info">
                     <h2 class="card__name">${country.name}</h2>
-                    <p class="card__info-data"><span class="card__info-data-title">Population: </span>${country.population}</p>
+                    <p class="card__info-data"><span class="card__info-data-title">Population: </span>${country.population.toLocaleString("en-US")}</p>
                     <p class="card__info-data"><span class="card__info-data-title">Region: </span>${country.region}</p>
                     <p class="card__info-data"><span class="card__info-data-title">Capital: </span>${country.capital}</p>
                     
@@ -99,6 +99,7 @@ function logText(e) {
     let currenciesList = theCountry.currencies.map(currency => currency.name).join(", ");
     let languagesList = theCountry.languages.map(language => language.name).join(", ");
 
+
     singleCountryDiv.innerHTML = `
         
             <button class="back"><i class="fa-solid fa-arrow-left"></i> Back</button>
@@ -111,7 +112,7 @@ function logText(e) {
                     <div class="single-country__info-columns">
                         <div class="single-country__info-single-column">
                             <p><span class="single-country__data-title">Native Name: </span> ${theCountry.nativeName}</p>
-                            <p><span class="single-country__data-title">Population: </span> ${theCountry.population}</p>
+                            <p><span class="single-country__data-title">Population: </span> ${theCountry.population.toLocaleString("en-US")}</p>
                             <p><span class="single-country__data-title">Region: </span> ${theCountry.subregion}</p>
                             <p><span class="single-country__data-title">Region: </span> ${theCountry.capital}</p>
                         </div>
@@ -168,6 +169,8 @@ function logText(e) {
 //4. Style with CSS (BEM & CSS custom properties (variables) (practice)     OK
 //5. On country click show country's details on new page/modal window       OK
 //5.1 Show countries with shared borders & display them on modal window 
+//5.1.1 Display 
 //5.2 Return back button                                                    OK
 //6. Apply light/dark mode
 //7. Write Readme documentation and comments
+//8. Population seperated with , (thousands seperator)
