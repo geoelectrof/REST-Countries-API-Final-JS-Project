@@ -95,6 +95,10 @@ function logText(e) {
     const singleCountryDiv = document.createElement("div");
     document.querySelector(".main-content").appendChild(singleCountryDiv);
     singleCountryDiv.classList.add("single-country-content");
+
+    let currenciesList = theCountry.currencies.map(currency => currency.name).join(", ");
+    let languagesList = theCountry.languages.map(language => language.name).join(", ");
+
     singleCountryDiv.innerHTML = `
         
             <button class="back"><i class="fa-solid fa-arrow-left"></i> Back</button>
@@ -112,10 +116,12 @@ function logText(e) {
                             <p><span class="single-country__data-title">Region: </span> ${theCountry.capital}</p>
                         </div>
                         <div class="single-country__info-single-column">
-                            <p><span class="single-country__data-title">Native Name: </span>${theCountry.topLevelDomain}</p>
-                            <p><span class="single-country__data-title">Currencies: </span>${theCountry.currencies}</p>
+                            <p><span class="single-country__data-title">Top Level Domain: </span>${theCountry.topLevelDomain}</p>
+                            <p><span class="single-country__data-title">Currencies: </span>${currenciesList}</p>
+                            <p><span class="single-country__data-title">Languages: </span>${languagesList}</p>
+                            </div>
                         </div>
-                    </div>
+                        <p><span class="single-country__data-title">Border Countries: </span></p>
                 </div>
             </div>
         
@@ -161,7 +167,7 @@ function logText(e) {
 //3. When typing in input search only in the selected continent             OK
 //4. Style with CSS (BEM & CSS custom properties (variables) (practice)     OK
 //5. On country click show country's details on new page/modal window       OK
-//5.1 Show countries with shared borders & display them on modal window
+//5.1 Show countries with shared borders & display them on modal window 
 //5.2 Return back button                                                    OK
 //6. Apply light/dark mode
 //7. Write Readme documentation and comments
