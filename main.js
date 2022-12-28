@@ -172,5 +172,7 @@ function logText(e) {
 //5.1.1 Display 
 //5.2 Return back button                                                    OK
 //6. Apply light/dark mode
-//7. Write Readme documentation and comments
+//7. Write  
+//7.1 Readme                                                                OK
+//7.2 Documentation and comments
 //8. Population seperated with , (thousands seperator)
